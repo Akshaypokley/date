@@ -38,7 +38,7 @@ public class dateppp {
         SimpleDateFormat myDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         SimpleDateFormat calDateFormat = new SimpleDateFormat("MMMM YYYY");
-
+SimpleDateFormat caadd=new SimpleDateFormat("dd");
 
         Date setDate = myDateFormat.parse(date);
         System.out.println(setDate);
@@ -59,21 +59,20 @@ public class dateppp {
         }
 
         for (int i = 1; i <= monthDiff; i++) {
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            driver.findElement(By.xpath(" .//*[@id='datetimepicker1']/div/ul/li[1]/div/div[1]/table/thead/tr[1]/th[@class="+ (isFuture ? "'next'" : "'prev'") + "]")).click();
+
+            if(isFuture )
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            driver.findElement(By.xpath(".//*[@id='datetimepicker1']/div/ul/li[1]/div/div[1]/table/thead/tr[1]/th[@class="+ (isFuture ? "'next'" : "'prev'") + "]")).click();
         }
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        WebElement d= driver.findElement(By.xpath(".//*[@id='datetimepicker1']//div[@title='" + new SimpleDateFormat("EEEE, MMMM dd, yyyy").format(setDate) + "']"));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
-        executor.executeScript("arguments[0].click();", d);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+    driver.findElement(By.xpath("//td[@class='day'] and text()='" + caadd.format(setDate).getBytes() + "'")).click();
 
         driver.close();
 
     }
 
 
-
-
+    }
 
 
 
@@ -110,7 +109,7 @@ public class dateppp {
 
         }
 */
-    }
+
 
 
 
